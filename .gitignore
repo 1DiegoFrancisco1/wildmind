@@ -1,0 +1,18 @@
+# Secrets
+.env
+
+# Virtual environment
+venv/
+
+# FAISS index (rebuilt automatically)
+data/
+
+# Local documents (downloaded from S3)
+docs/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# AWS credentials
+wildmind-user_accessKeys.csv

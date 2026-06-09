@@ -1,0 +1,148 @@
+<svg width="100%" viewBox="0 0 680 820" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>WildMind RAG Architecture</title>
+  <desc>A colorful diagram showing the WildMind RAG pipeline from document ingestion to user answer</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: system-ui, sans-serif; fill: #1a1a1a; }
+    .th { font-size: 14px; font-weight: 600; }
+    .ts { font-size: 12px; font-weight: 400; fill: #444; }
+    .arr { stroke: #888; stroke-width: 1.5; fill: none; }
+    .teal rect   { fill: #E1F5EE; stroke: #0F6E56; }
+    .teal text   { fill: #085041; }
+    .amber rect  { fill: #FAEEDA; stroke: #854F0B; }
+    .amber text  { fill: #633806; }
+    .coral rect  { fill: #FAECE7; stroke: #993C1D; }
+    .coral text  { fill: #4A1B0C; }
+    .blue rect   { fill: #E6F1FB; stroke: #185FA5; }
+    .blue text   { fill: #0C447C; }
+    .purple rect { fill: #EEEDFE; stroke: #534AB7; }
+    .purple text { fill: #26215C; }
+  </style>
+
+  <!-- Title -->
+  <text class="th" x="340" y="32" text-anchor="middle" font-size="16" fill="#1a1a1a">WildMind — RAG architecture</text>
+
+  <!-- INGESTION LANE -->
+  <text class="ts" x="120" y="68" text-anchor="middle">Document ingestion</text>
+
+  <g class="teal">
+    <rect x="30" y="80" width="180" height="54" rx="8" stroke-width="0.5"/>
+    <text class="th" x="120" y="101" text-anchor="middle" dominant-baseline="central">WWF publications</text>
+    <text class="ts" x="120" y="119" text-anchor="middle" dominant-baseline="central">7 wildlife PDFs</text>
+  </g>
+  <line x1="120" y1="134" x2="120" y2="164" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g class="amber">
+    <rect x="30" y="164" width="180" height="54" rx="8" stroke-width="0.5"/>
+    <text class="th" x="120" y="185" text-anchor="middle" dominant-baseline="central">WildMind agent</text>
+    <text class="ts" x="120" y="203" text-anchor="middle" dominant-baseline="central">Downloads + uploads</text>
+  </g>
+  <line x1="120" y1="218" x2="120" y2="248" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g class="coral">
+    <rect x="30" y="248" width="180" height="54" rx="8" stroke-width="0.5"/>
+    <text class="th" x="120" y="269" text-anchor="middle" dominant-baseline="central">AWS S3</text>
+    <text class="ts" x="120" y="287" text-anchor="middle" dominant-baseline="central">Cloud document store</text>
+  </g>
+  <line x1="120" y1="302" x2="120" y2="332" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g class="purple">
+    <rect x="30" y="332" width="180" height="54" rx="8" stroke-width="0.5"/>
+    <text class="th" x="120" y="353" text-anchor="middle" dominant-baseline="central">PDF loader</text>
+    <text class="ts" x="120" y="371" text-anchor="middle" dominant-baseline="central">LangChain + PyPDF</text>
+  </g>
+  <line x1="120" y1="386" x2="120" y2="416" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g class="purple">
+    <rect x="30" y="416" width="180" height="54" rx="8" stroke-width="0.5"/>
+    <text class="th" x="120" y="437" text-anchor="middle" dominant-baseline="central">Text splitter</text>
+    <text class="ts" x="120" y="455" text-anchor="middle" dominant-baseline="central">500 chars, 50 overlap</text>
+  </g>
+  <line x1="120" y1="470" x2="120" y2="500" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g class="blue">
+    <rect x="30" y="500" width="180" height="54" rx="8" stroke-width="0.5"/>
+    <text class="th" x="120" y="521" text-anchor="middle" dominant-baseline="central">HuggingFace embeddings</text>
+    <text class="ts" x="120" y="539" text-anchor="middle" dominant-baseline="central">384-dim vectors</text>
+  </g>
+  <line x1="120" y1="554" x2="120" y2="584" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g class="blue">
+    <rect x="30" y="584" width="180" height="54" rx="8" stroke-width="0.5"/>
+    <text class="th" x="120" y="605" text-anchor="middle" dominant-baseline="central">FAISS index</text>
+    <text class="ts" x="120" y="623" text-anchor="middle" dominant-baseline="central">1,852 vectors stored</text>
+  </g>
+
+  <!-- QUERY LANE -->
+  <text class="ts" x="530" y="68" text-anchor="middle">Query pipeline</text>
+
+  <g class="teal">
+    <rect x="430" y="80" width="220" height="54" rx="8" stroke-width="0.5"/>
+    <text class="th" x="540" y="101" text-anchor="middle" dominant-baseline="central">User question</text>
+    <text class="ts" x="540" y="119" text-anchor="middle" dominant-baseline="central">Streamlit chat UI</text>
+  </g>
+  <line x1="540" y1="134" x2="540" y2="164" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g class="amber">
+    <rect x="430" y="164" width="220" height="54" rx="8" stroke-width="0.5"/>
+    <text class="th" x="540" y="185" text-anchor="middle" dominant-baseline="central">Chat history</text>
+    <text class="ts" x="540" y="203" text-anchor="middle" dominant-baseline="central">Session state memory</text>
+  </g>
+  <line x1="540" y1="218" x2="540" y2="248" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g class="coral">
+    <rect x="430" y="248" width="220" height="54" rx="8" stroke-width="0.5"/>
+    <text class="th" x="540" y="269" text-anchor="middle" dominant-baseline="central">Question condensation</text>
+    <text class="ts" x="540" y="287" text-anchor="middle" dominant-baseline="central">Llama 3.2 rewrites query</text>
+  </g>
+  <line x1="540" y1="302" x2="540" y2="332" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g class="blue">
+    <rect x="430" y="332" width="220" height="54" rx="8" stroke-width="0.5"/>
+    <text class="th" x="540" y="353" text-anchor="middle" dominant-baseline="central">FAISS retriever</text>
+    <text class="ts" x="540" y="371" text-anchor="middle" dominant-baseline="central">Top 8 similar chunks</text>
+  </g>
+
+  <!-- Dashed connector from FAISS index to retriever -->
+  <line x1="210" y1="611" x2="280" y2="611" stroke="#aaa" stroke-width="0.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+  <line x1="280" y1="611" x2="280" y2="359" stroke="#aaa" stroke-width="0.5" stroke-dasharray="4 3"/>
+  <line x1="280" y1="359" x2="428" y2="359" stroke="#aaa" stroke-width="0.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+  <text class="ts" x="284" y="600">vector search</text>
+
+  <line x1="540" y1="386" x2="540" y2="416" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g class="purple">
+    <rect x="430" y="416" width="220" height="54" rx="8" stroke-width="0.5"/>
+    <text class="th" x="540" y="437" text-anchor="middle" dominant-baseline="central">Answer generation</text>
+    <text class="ts" x="540" y="455" text-anchor="middle" dominant-baseline="central">Llama 3.2 via Ollama</text>
+  </g>
+  <line x1="540" y1="470" x2="540" y2="500" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g class="teal">
+    <rect x="430" y="500" width="220" height="54" rx="8" stroke-width="0.5"/>
+    <text class="th" x="540" y="521" text-anchor="middle" dominant-baseline="central">Grounded answer</text>
+    <text class="ts" x="540" y="539" text-anchor="middle" dominant-baseline="central">Displayed in chat UI</text>
+  </g>
+
+  <!-- Divider -->
+  <line x1="40" y1="660" x2="640" y2="660" stroke="#ccc" stroke-width="0.5" stroke-dasharray="4 3"/>
+  <text class="ts" x="340" y="650" text-anchor="middle">Built with LangChain · FAISS · HuggingFace · Ollama · AWS S3</text>
+
+  <!-- Legend -->
+  <text class="ts" x="340" y="690" text-anchor="middle">Technology legend</text>
+  <g class="teal"><rect x="60" y="704" width="12" height="12" rx="2" stroke-width="0.5"/></g>
+  <text class="ts" x="78" y="714">User / output</text>
+  <g class="amber"><rect x="160" y="704" width="12" height="12" rx="2" stroke-width="0.5"/></g>
+  <text class="ts" x="178" y="714">Agent / memory</text>
+  <g class="coral"><rect x="270" y="704" width="12" height="12" rx="2" stroke-width="0.5"/></g>
+  <text class="ts" x="288" y="714">AWS / LLM step</text>
+  <g class="blue"><rect x="380" y="704" width="12" height="12" rx="2" stroke-width="0.5"/></g>
+  <text class="ts" x="398" y="714">Embeddings / FAISS</text>
+  <g class="purple"><rect x="506" y="704" width="12" height="12" rx="2" stroke-width="0.5"/></g>
+  <text class="ts" x="524" y="714">LangChain</text>
+</svg>

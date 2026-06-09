@@ -2,6 +2,11 @@
 
 A RAG-powered chatbot that answers questions about animal behavior, biology, and wildlife conservation — built as a hands-on learning project to understand LangChain, RAG, embeddings, and local LLMs.
 
+
+## 🗺️ Architecture
+
+![WildMind Architecture](wildmind_architecture.svg)
+
 ---
 
 ## 🚀 Tech Stack

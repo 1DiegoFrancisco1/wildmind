@@ -59,13 +59,13 @@ def load_vectorstore():
 
         vectorstore = FAISS.from_documents(all_chunks, embeddings)
         vectorstore.save_local("data/faiss_index")
-
+    print(f"Total vectors in index: {vectorstore.index.ntotal}")
     return vectorstore
 
 def build_chain():
     vectorstore = load_vectorstore()
     llm = ChatOllama(model="llama3.2")
-    retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
+    retriever = vectorstore.as_retriever(search_kwargs={"k": 8})
 
     condense_prompt = ChatPromptTemplate.from_messages([
         ("system", """Given the conversation history and a follow-up question,
